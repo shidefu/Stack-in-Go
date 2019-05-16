@@ -7,7 +7,7 @@ import "fmt"
  * kind of data structure, of which the elements are First-In/Last-Out
  *
  * @size: the size of the stack
- * @top: the index of the peek element
+ * @top: the index(from 0) of the peek element, top==-1 means empty
  * @data: the base slice which implements the stack
  */
 type Stack struct {
@@ -41,7 +41,6 @@ func (t *Stack) Push(element interface{}) bool {
 		return false
 	}
 	t.top++
-	t.size++
 	t.data[t.top] = element
 	return true
 }
@@ -69,7 +68,6 @@ func (t *Stack) Pop() (r interface{}, err error) {
 	}
 	r = t.data[t.top]
 	t.top--
-	t.size--
 	return
 }
 
@@ -93,22 +91,22 @@ func (t *Stack) Peek() (r interface{}, err error) {
  * get the length of the stack
  */
 func (t *Stack) Length() int {
-	return t.size
+	return t.top+1
 }
 
 /*
  * clear the stack
- * it is not necessary to clear, just let top=0, and cover elements
+ * it is not necessary to clear, just let top=-1, and cover elements
  */
 func (t *Stack) Clear() {
-	t.top = 0
+	t.top = -1
 }
 
 /*
  * judge whether the stack is empty
  */
 func (t *Stack) IsEmpty() bool {
-	return t.size == 0
+	return t.top == -1
 }
 
 /*
