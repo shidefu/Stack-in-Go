@@ -25,6 +25,7 @@ type Stack struct {
 func MakeStack(size int) Stack {
 	q := Stack{}
 	q.size = size
+	q.top = -1
 	q.data = make([]interface{}, size)
 	return q
 }
@@ -40,6 +41,7 @@ func (t *Stack) Push(element interface{}) bool {
 		return false
 	}
 	t.top++
+	t.size++
 	t.data[t.top] = element
 	return true
 }
@@ -65,8 +67,9 @@ func (t *Stack) Pop() (r interface{}, err error) {
 		err = fmt.Errorf("Stack Over Flow!")
 		return
 	}
-	t.top--
 	r = t.data[t.top]
+	t.top--
+	t.size--
 	return
 }
 
@@ -105,7 +108,7 @@ func (t *Stack) Clear() {
  * judge whether the stack is empty
  */
 func (t *Stack) IsEmpty() bool {
-	return t.top == 0
+	return t.size == 0
 }
 
 /*
