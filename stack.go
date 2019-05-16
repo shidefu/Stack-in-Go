@@ -119,7 +119,7 @@ func (t *Stack) IsFull() bool {
  * traverse the stack from top to bottom
  *
  * @return fn: function that operates stack elements
- * @return isTop2Bottom: whether the traverse is from top tp bottom
+ * @return isTop2Bottom: whether the traverse is from top to bottom
  */
 func (t *Stack) Traverse(fn func(node interface{}), isTop2Bottom bool) {
 	if isTop2Bottom {
