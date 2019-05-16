@@ -18,7 +18,6 @@ type Stack struct {
 /*
  * generate a stack
  *
- * @param size
  * @return Stack
  */
 func MakeStack() Stack {
