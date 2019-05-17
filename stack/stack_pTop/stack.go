@@ -1,4 +1,4 @@
-package stack_pTop
+package main
 
 import "fmt"
 
@@ -8,11 +8,11 @@ import "fmt"
  * the size can be infinity
  *
  * @top: the index(from 0) of the peek element, top==-1 means empty
- * @pData: the pointer to the base slice which implements the stack
+ * @data: the base slice which implements the stack
  */
 type Stack struct {
 	top   int
-	pData *[]interface{}
+	data  []interface{}
 }
 
 /*
@@ -21,11 +21,10 @@ type Stack struct {
  * @return Stack
  */
 func MakeStack() Stack {
-	q := Stack{}
-	q.top = -1
-	data := []interface{}{}
-	q.pData = &data
-	return q
+	s := Stack{}
+	s.top = -1
+	s.data = []interface{}{}
+	return s
 }
 
 /*
@@ -35,7 +34,8 @@ func MakeStack() Stack {
  */
 func (t *Stack) Push(element interface{}) {
 	t.top++
-	*t.pData = append(*t.pData, element)
+	p := &t.data
+	*p = append(*p, element)
 	return
 }
 
@@ -46,7 +46,7 @@ func (t *Stack) Push(element interface{}) {
  * @return err: whether peek exists
  *
  * Notes: because the r returned is interface{} type,
- * if other type is required, write the following code in your program,
+ * if other type is required, write the following codes in your program,
  * switch v := r.(type) {
  *     case int:
  *         ...
@@ -60,8 +60,9 @@ func (t *Stack) Pop() (r interface{}, err error) {
 		err = fmt.Errorf("Stack Over Flow!")
 		return
 	}
-	r = (*t.pData)[t.top]
-	*t.pData = (*t.pData)[:t.top]
+	p := &t.data
+	r = (*p)[t.top]
+	*p = (*p)[:t.top]
 	t.top--
 	return
 }
@@ -77,7 +78,7 @@ func (t *Stack) Peek() (r interface{}, err error) {
 		err = fmt.Errorf("Stack Over Flow!")
 		return
 	}
-	r = (*t.pData)[t.top]
+	r = t.data[t.top]
 	return
 }
 
@@ -113,11 +114,11 @@ func (t *Stack) IsEmpty() bool {
 func (t *Stack) Traverse(fn func(node interface{}), isTop2Bottom bool) {
 	if isTop2Bottom {
 		for i := 0; i <= t.top; i++ {
-			fn((*t.pData)[i])
+			fn(t.data[i])
 		}
 	} else {
 		for i := t.top; i >= 0; i-- {
-			fn((*t.pData)[i])
+			fn(t.data[i])
 		}
 	}
 
