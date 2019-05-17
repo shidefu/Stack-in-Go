@@ -34,8 +34,7 @@ func MakeStack() Stack {
  */
 func (t *Stack) Push(element interface{}) {
 	t.top++
-	p := &t.data
-	*p = append(*p, element)
+	t.data = append(t.data, element)
 	return
 }
 
@@ -60,9 +59,8 @@ func (t *Stack) Pop() (r interface{}, err error) {
 		err = fmt.Errorf("Stack Over Flow!")
 		return
 	}
-	p := &t.data
-	r = (*p)[t.top]
-	*p = (*p)[:t.top]
+	r = t.data[t.top]
+	t.data = t.data[:t.top]
 	t.top--
 	return
 }
