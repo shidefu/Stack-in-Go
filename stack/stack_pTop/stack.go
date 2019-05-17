@@ -46,7 +46,7 @@ func (t *Stack) Push(element interface{}) {
  * @return err: whether peek exists
  *
  * Notes: because the r returned is interface{} type,
- * if other type is required, write the following codes in your program,
+ * if other type is required, write the following code in your program,
  * switch v := r.(type) {
  *     case int:
  *         ...
