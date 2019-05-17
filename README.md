@@ -1,7 +1,7 @@
 # Stack-in-Go
 This repository gives three implementations of stack, kind of data structure, of which the elements are First-In/Last-Out in Go.
 1. Stack: the general stack, implemented by a base slice, of which the size can be infinity, with methods: Push(), Pop(), Peek(), Len(), Cap(), IsEmpty();
-2. Stack with Top Pointer: stack based 1 but a top pointer "top" and a slice pointer "pData" were added, with methods: MakeStack(), Push(), Pop(), Peek(), Length(), Clear(), IsEmpty(), Traverse().
+2. Stack with Top Pointer: stack based 1 but a top pointer "top" was added, with methods: MakeStack(), Push(), Pop(), Peek(), Length(), Clear(), IsEmpty(), Traverse().
 3. Finite Stack: a finite-length stack, including a size "size", a top pointer "top" and a base slice "data", with methods: MakeStack(), Push(), Pop(), Peek(), Length(), Clear(), IsEmpty(), IsFull(), Traverse().
 
 Notes:
